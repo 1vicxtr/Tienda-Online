@@ -1,14 +1,16 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 function Productos() {
-  return (
-    <>
-        <Header />
+    return (
+        <>
+            <Header />
 
-    <div>
-      <h1>Página de Productos</h1>
-    </div>
-    </>
-  );
+            <div className="container-home">
+                <h1>Página de Productos</h1>
+            </div>
+            <Footer />
+        </>
+    );
 }
 
 export default Productos;
