@@ -45,74 +45,46 @@ footer {
   margin-bottom: 3rem;
 }
 
-.QuienesSomos {
+
+.contenedor-login {
   background-color: rgb(201, 201, 201);
   padding: 2rem;
   margin: 2rem;
   text-align: center;
   border-radius: 10px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+input {
+  display: block;
+  width: 90%;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  border: 1px solid #1f1d1d;
+  border-radius: 5px;
+}
+.contenedor-login button{
+ 
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease; 
+  color: white;
+  background-color: rgb(5, 5, 5);
+  border: 2px solid transparent;
+}
+.contenedor-login  button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
 }
 
-.QuienesSomos img {
-  width: 100%;
-  max-width: 700px;
-  height: auto;
-  margin-top: 2rem;
-  border: 1px solid rgb(0, 0, 0);
-  transition: .5s;
-  border-radius: 10px;
-  mix-blend-mode: multiply;
-}
+/* Media Queries for Responsive Design */
 
-.Objetivo {
-  background-color: rgb(201, 201, 201);
-  padding: 2rem;
-  margin: 2rem;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.Experiencia {
-  background-color: rgb(201, 201, 201);
-  padding: 2rem;
-  margin: 2rem;
-  text-align: center;
-  border-radius: 10px;
-  align-items: center;
-  place-items: center;
-  justify-items: center;
-
-}
-
-.Experiencias-Imagenes {
-  margin: auto;
-  width: 100%;
-  display: inline-block;
-  gap: 2rem;
-}
-
-.Experiencias-Imagenes img {
-  margin-block: 3rem;
-  margin-inline: 1rem;
-  border: 1px solid rgb(0, 0, 0);
-  transition: .5s;
-  border-radius: 10px;
-  mix-blend-mode: multiply;
-}
-
-.Experiencias-Imagenes img:nth-child(1) {
-  transform: skewY(5deg);
-  box-shadow: 15px 15px 25px rgb(0, 0, 0);
-  transition: .5s;
-}
-
-.Experiencias-Imagenes img:nth-child(2) {
-  box-shadow: 5px 40px 25px rgb(0, 0, 0);
-  transition: .5s;
-}
-
-.Experiencias-Imagenes img:nth-child(3) {
-  transform: skewY(-5deg);
-  box-shadow: -15px 15px 25px rgb(0, 0, 0);
-  transition: .5s;
+ .carritoCompras{                     
+  background-color: #1f1d1d;
+  z-index:1;
 }
