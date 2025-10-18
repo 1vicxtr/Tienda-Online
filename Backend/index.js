@@ -1,45 +1,93 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
 const { Pool } = require('pg');
 
-// Configuración de la conexión a la base de datos
 const pool = new Pool({
-  // 1. **TU USUARIO DE POSTGRES ES 'victor'**
-  user: 'victor', // ¡REEMPLAZA ESTO CON TU USUARIO DE POSTGRES!
-  
-  // 2. **EL HOST EN LOCAL ES 'localhost'**
-  host: 'localhost', 
-  
-  // 3. La base de datos a la que quieres conectarte
-  database: 'tienda_online', 
-  
-  // 4. **TU CONTRASEÑA ACTUAL**
-  password: '2729', // ¡REEMPLAZA ESTO CON LA CONTRASEÑA DE 'victor'!
+  user: 'postgres',
+  host: 'localhost',
+  database: 'tienda_online',
+  password: '2729',
   port: 5432,
 });
+app.use(cors());
+app.use(express.json());
+
+
+app.post('/acceso', async (req, res) => {
+  
+});
+
+
+
+app.get('/productos', async (req, res) => {
+  try {
+    const cliente = await pool.connect();
+    const resultado = await cliente.query('SELECT * FROM productos;');
+    res.json(resultado.rows);
+    cliente.release();
+  } catch (err) {
+    console.error('ERROR AL OBTENER PRODUCTOS:', err.message);
+    res.status(500).send('Error al obtener productos de la base de datos.');
+  }
+});
+
+app.get('/clientes', async (req, res) => {
+  try {
+    const cliente = await pool.connect();
+    const resultado = await cliente.query('SELECT * FROM clientes;');
+    res.json(resultado.rows);
+    cliente.release();
+  } catch (err) {
+    console.error('ERROR AL OBTENER CLIENTES:', err.message);
+    res.status(500).send('Error al obtener clientes de la base de datos.');
+  }
+});
+app.get('/proveedores', async (req, res) => {
+  try {
+    const cliente = await pool.connect();
+    const resultado = await cliente.query('SELECT * FROM proveedores;');
+    res.json(resultado.rows);
+    cliente.release();
+  } catch (err) {
+    console.error('ERROR AL OBTENER ORDENES:', err.message);
+    res.status(500).send('Error al obtener ordenes de la base de datos.');
+  }
+});
+app.get('/compras', async (req, res) => {
+  try {
+    const cliente = await pool.connect();
+    const resultado = await cliente.query('SELECT * FROM compras;');
+    res.json(resultado.rows);
+    cliente.release();
+  } catch (err) {
+    console.error('ERROR AL OBTENER ORDENES:', err.message);
+    res.status(500).send('Error al obtener ordenes de la base de datos.');
+  }
+});
+
+
+
+
+
+
+
+
 
 app.get('/', async (req, res) => {
   try {
-    console.log('Intentando conectar a la base de datos...');
-    
-    // Aquí se establece la conexión
-    const client = await pool.connect(); 
-    
-    // Ejecuta la consulta
-    const result = await client.query('SELECT * FROM productos');
-    const productos = result.rows;
-    client.release(); 
-
-    res.json(productos);
+    const client = await pool.connect();
+    console.log('Conexión exitosa a la base de datos.');
+    client.release();
+    res.send('Conexión exitosa a la base de datos.');
   } catch (err) {
-    // Si falla, muestra un mensaje útil en la terminal y envía error al cliente
-    console.error('ERROR EN LA CONEXIÓN O CONSULTA:', err.message);
-    res.status(500).send('Error en el servidor: Revisa las credenciales de la BD.');
+    console.error('ERROR EN LA CONEXIÓN:', err.message);
+    res.status(500).send('Error en la conexión a la base de datos. Revisa las credenciales.');
   }
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
