@@ -64,19 +64,21 @@ app.get('/compras', async (req, res) => {
     res.status(500).send('Error al obtener ordenes de la base de datos.');
   }
 });
-app.post("/carrito", async  (req, res) =>{
-  try{
-     const codigo = req.body; // Se recibe del cuerpo del POST
-     productos.push({codigo});
-     res.json({mensaje: "Producto agregado al carrito de compras!"});
-  }catch(err){
+
+app.post("/carrito", async (req, res) => {
+  try {
+    const nombre = req.body; // Se recibe del cuerpo del POST
+    productos.push({ nombre });
+    res.json();
+  } catch (err) {
     console.log(err);
   }
 })
 app.get('/carrito', async (req, res) => {
-  try{
+  try {
     res.json(productos);
-  }catch(err){
+    
+  } catch (err) {
     console.log(err);
   }
 });

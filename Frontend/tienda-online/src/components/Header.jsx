@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import '../index.css'
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Modal from "../components/Modal";
+import '../components-css/modal.css';
+
 function Header() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
@@ -35,12 +34,15 @@ function Header() {
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 <h2>¡Bienvenido al carrito de compras!</h2>
                 <p>Aqui se encontraran tus productos.</p>
-
-                {lista.map(i => (
-                    <li>{i.codigoProducto}</li>
+                        
+                    <div className='lista-productos'>
+                {lista.map((i, idx) => (
+                    <li key={idx}>{i.nombre.nombre}</li>
                 ))}
+                </div>
 
-                <button onClick={closeModal}>Cerrar</button>
+                <button onClick={closeModal}>Comprar</button>
+
             </Modal>
         </>
     );

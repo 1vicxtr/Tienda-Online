@@ -1,7 +1,7 @@
 import '../components-css/modal.css';
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) {
-    return null; // Si no está abierto, no renderiza nada
+    return null; 
   }
 
   return (
