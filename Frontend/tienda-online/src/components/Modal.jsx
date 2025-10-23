@@ -1,5 +1,4 @@
 import '../components-css/modal.css';
-
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) {
     return null; // Si no está abierto, no renderiza nada
@@ -11,6 +10,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
           &times;
+            
         </button>
         {children}
       </div>

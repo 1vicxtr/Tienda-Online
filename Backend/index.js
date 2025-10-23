@@ -16,10 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 
-app.post('/acceso', async (req, res) => {
-  
-});
 
+let productos = [];
 
 
 app.get('/productos', async (req, res) => {
@@ -33,7 +31,6 @@ app.get('/productos', async (req, res) => {
     res.status(500).send('Error al obtener productos de la base de datos.');
   }
 });
-
 app.get('/clientes', async (req, res) => {
   try {
     const cliente = await pool.connect();
@@ -67,7 +64,22 @@ app.get('/compras', async (req, res) => {
     res.status(500).send('Error al obtener ordenes de la base de datos.');
   }
 });
-
+app.post("/carrito", async  (req, res) =>{
+  try{
+     const codigo = req.body; // Se recibe del cuerpo del POST
+     productos.push({codigo});
+     res.json({mensaje: "Producto agregado al carrito de compras!"});
+  }catch(err){
+    console.log(err);
+  }
+})
+app.get('/carrito', async (req, res) => {
+  try{
+    res.json(productos);
+  }catch(err){
+    console.log(err);
+  }
+});
 
 
 

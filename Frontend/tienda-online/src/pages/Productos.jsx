@@ -13,9 +13,23 @@ function Productos() {
                 console.error('Error al obtener los productos:', error);
             });
     }, []);
-    const carrito = () => {
-        alert("Producto añadido al carrito");
-    };
+
+    const carrito = async (codigoproducto) => {
+        alert(codigoproducto);
+        await fetch("http://localhost:3000/carrito", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ codigoproducto }) // 🔹 Se envía JSON
+        });
+        obtenerLista();
+    }
+    const obtenerLista = async () =>{
+        const res = await fetch("http://localhost:3000/carrito");
+        const data = await res.json();
+    }
+    useEffect(() =>{
+        obtenerLista();
+    }, []);
     return (
         <>
             <Header />
@@ -28,7 +42,7 @@ function Productos() {
                             <h2>{producto.nombre}</h2>
                             <p>Precio: ${producto.precio}</p>
                             <p>Existencia: {producto.numeroexistencias}</p>
-                            <button onClick={carrito}>Añadir al carrito</button>
+                            <button onClick={() => carrito(producto.codigoproducto)}>Añadir al carrito</button>
                         </div>
                     ))}
                 </div>
